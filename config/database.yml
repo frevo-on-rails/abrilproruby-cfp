@@ -19,7 +19,8 @@ development:
   encoding: unicode
   database: abril-pro-ruby-cfp_development
   pool: 5
-  username: abril-pro-ruby-cfp
+  host: localhost
+  username:
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -48,7 +49,7 @@ test:
   encoding: unicode
   database: abril-pro-ruby-cfp_test
   pool: 5
-  username: abril-pro-ruby-cfp
+  username:
   password:
 
 production:
@@ -56,5 +57,5 @@ production:
   encoding: unicode
   database: abril-pro-ruby-cfp_production
   pool: 5
-  username: abril-pro-ruby-cfp
+  username:
   password:
