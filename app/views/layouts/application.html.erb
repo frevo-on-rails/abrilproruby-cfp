@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>AbrilProRubyCfp</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title>Call For Speakers &mdash; Abril Pro Ruby 2014 @ Porto de Galinhas</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:url"             content="http://www.abrilproruby.com" />
+    <meta property="og:title"           content="Abril Pro Ruby 2014 @ Porto de Galinhas" />
+    <meta property="og:site_name"       content="Call For Speakers" />
+    <meta property="og:description"     content="It will be a pleasure to share expertise and experiences with you. The talk can be presented in english or portuguese and will last 40 minutes long with 10 minutes for questions." />
+    <meta property="og:image"           content="https://dl.dropboxusercontent.com/u/13659411/AP.Rb/fb-og-aprb.png" />
+    <meta property="og:image"           content="https://dl.dropboxusercontent.com/u/13659411/AP.Rb/fb-og-aprb-2.png" />
+    <link href="http://fonts.googleapis.com/css?family=Titillium+Web:400,300,200" rel="stylesheet" type="text/css" />
+    <%= stylesheet_link_tag :application %>
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <%= yield %>
+    <%= render 'layouts/analytics' %>
+  </body>
 </html>
