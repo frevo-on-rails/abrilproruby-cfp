@@ -11,7 +11,7 @@ class ProposalsController < ApplicationController
   def create
     @proposal = Proposal.new(proposal_attributes)
     if @proposal.save
-      # TODO Send email
+      ProposalsMailer.confirmation_email(@proposal).deliver!
       render :create
     else
       render :new
