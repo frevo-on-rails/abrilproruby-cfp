@@ -101,8 +101,8 @@ p {
   text-align: center;
 }
 img.wooot {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 p.wooot-text {
   color: #000;
@@ -161,6 +161,18 @@ dl {
 }
 dt, dd {
   margin-bottom: 10px;
+}
+.alert.alert-danger {
+  background-color: darken(#fdf7f7, 2%);
+  border-left: 3px solid #b94a48;
+  color: #b94a48;
+  line-height: 1.6;
+  margin: 20px 0;
+  padding: 20px;
+}
+.alert.alert-danger h3 {
+  font-size: 18px;
+  margin: 0;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   h2 {

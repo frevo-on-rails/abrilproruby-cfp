@@ -4,10 +4,11 @@ class Proposal < ActiveRecord::Base
   attr_readonly :uuid
 
   validates_presence_of :uuid, :name, :title, :bio, :residence,
-    :email, :talk_title, :talk_description, :needs_travel_assistance
+    :email, :talk_title, :talk_description
+  validates_inclusion_of :needs_travel_assistance, in: [true, false]
 
   def set_uuid
-    self.uuid = SecureRandom.uuid
+    self.uuid ||= SecureRandom.uuid
   end
 
   def to_param

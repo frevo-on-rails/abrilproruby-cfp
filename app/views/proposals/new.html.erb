@@ -9,66 +9,89 @@
       The sessions will last 40 minutes with 10 additional minutes for questions.<br />
       Your talk can be presented in English or Portuguese.
     </p>
-    <a class="language" href="../pt/cfp">Portugu&#234;s</a>
-    <a class="back" href="javascript:history.back()">&larr; Back</a>
-    <div class="form-group has-error">
-      <label for="SpeakerName">Name</label>
-      <input type="text" class="form-control" id="SpeakerName" placeholder="What's your name?">
-    </div>
-    <div class="form-group">
-      <label for="SpeakerTitle">Title</label>
-      <input type="text" class="form-control" id="SpeakerTitle" placeholder="What do you do?">
-    </div>
-    <div class="form-group">
-      <label for="SpeakerOrganization">Organization</label>
-      <input type="text" class="form-control" id="SpeakerOrganization" placeholder="Where do you work?">
-    </div>
-    <div class="form-group">
-      <label for="SpeakerBiography">Short Bio</label>
-      <textarea class="form-control" id="SpeakerBiography" rows="3" placeholder="How would you briefly describe yourself?"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="SpeakerResidence">Residence</label>
-      <input type="text" class="form-control" id="SpeakerCountry" placeholder="What city do you live in?">
-    </div>
-    <fieldset>
-      <legend>Travel Expenses</legend>
-      <div class="radio">
-        <input type="radio" name="SpeakerAssistance" id="SpeakerAssistanceYes" value="1">
-        <label for="SpeakerAssistanceYes">I will need assistance to pay my travel expenses.</label>
+    <!-- <a class="language" href="../pt/cfp">Portugu&#234;s</a> -->
+    <a class="back" href="javascript:history.back()">&larr; Back to AP.Rb</a>
+
+    <% if @proposal.errors.any? %>
+      <div class="alert alert-danger">
+        <h3>Ooops, something is wrong</h3>
+        Please review the fields marked in red and try again.
       </div>
-      <div class="radio negativeassistance">
-        <input type="radio" name="SpeakerAssistance" id="SpeakerAssistanceNo" value="0">
-        <label for="SpeakerAssistanceNo">Nevermind, I can pay for my travel.</label>
-      </div>
-    </fieldset>
-    <div class="form-group">
-      <label for="SpeakerEmail">Email</label>
-      <input type="email" class="form-control" id="SpeakerEmail" placeholder="Oldschool contact (your@email.com)">
-    </div>
-    <div class="form-group">
-      <label for="SpeakerGithubHandler">GitHub Handler</label>
-      <input type="url" class="form-control" id="SpeakerGithubHandler" placeholder="Newschool contact (@username)">
-    </div>
-    <div class="form-group">
-      <label for="SpeakerTwitterHandler">Twitter Handler</label>
-      <input type="url" class="form-control" id="SpeakerTwitterHandler" placeholder="Another newschool contact (@username)">
-    </div>
-    <div class="form-group">
-      <label for="SpeakerTalkTitle">Talk Title</label>
-      <input type="text" class="form-control" id="SpeakerTalkTitle" placeholder="It doesn't need to be the final title of your talk">
-    </div>
-    <div class="form-group">
-      <label for="SpeakerTalkDescription">Talk Description</label>
-      <textarea class="form-control" id="SpeakerTalkDescription" rows="8" placeholder="What do you plan to cover and what the audience will learn?"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="SpeakerNotes">Notes</label>
-      <textarea class="form-control" id="SpeakerNotes" rows="3" placeholder="Anything else?"></textarea>
-    </div>
-    <p>
-      <small>Beware that this proposal may be shown to attendees so they can choose what they want to see.</small>
-    </p>
-    <button type="submit" class="btn btn-default btn-lg center-block">Submit your proposal</button>
+    <%- end %>
+
+    <%= form_for @proposal, builder: BootstrapFormBuilder do |f| %>
+      <%= f.field_wrapper :name do %>
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control', placeholder: "What's your name?" %>
+      <% end %>
+
+      <%= f.field_wrapper :title do %>
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control', placeholder: "What do you do?" %>
+      <% end %>
+
+      <%= f.field_wrapper :organization do %>
+        <%= f.label :organization %>
+        <%= f.text_field :organization, class: 'form-control', placeholder: "Where do you work? (Optional)" %>
+      <% end %>
+
+      <%= f.field_wrapper :bio do %>
+        <%= f.label :bio %>
+        <%= f.text_area :bio, rows: '3', class: 'form-control', placeholder: "How would you briefly describe yourself?" %>
+      <% end %>
+
+      <%= f.field_wrapper :residence do %>
+        <%= f.label :residence %>
+        <%= f.text_field :residence, class: 'form-control', placeholder: "In what city do you live?" %>
+      <% end %>
+
+      <fieldset>
+        <legend>Travel Expenses</legend>
+        <%= f.field_wrapper :needs_travel_assistance, class: 'radio' do %>
+          <%= f.radio_button :needs_travel_assistance, true %>
+          <%= f.label :needs_travel_assistance, 'I will need assistance to pay my travel expenses.', value: true %>
+        <% end %>
+        <%= f.field_wrapper :needs_travel_assistance, class: 'radio' do %>
+          <%= f.radio_button :needs_travel_assistance, false %>
+          <%= f.label :needs_travel_assistance, 'Nevermind, I can pay for my travel.', value: false %>
+        <% end %>
+      </fieldset>
+
+      <%= f.field_wrapper :email do %>
+        <%= f.label :email %>
+        <%= f.text_field :email, class: 'form-control', placeholder: "Oldschool contact (your@email.com)" %>
+      <% end %>
+
+      <%= f.field_wrapper :github_handler do %>
+        <%= f.label :github_handler %>
+        <%= f.text_field :github_handler, class: 'form-control', placeholder: "@username (Optional)" %>
+      <% end %>
+
+      <%= f.field_wrapper :twitter_handler do %>
+        <%= f.label :twitter_handler %>
+        <%= f.text_field :twitter_handler, class: 'form-control', placeholder: "@username (Optional)" %>
+      <% end %>
+
+      <%= f.field_wrapper :talk_title do %>
+        <%= f.label :talk_title %>
+        <%= f.text_field :talk_title, class: 'form-control', placeholder: "It doesn't need to be the final title of your talk" %>
+      <% end %>
+
+      <%= f.field_wrapper :talk_description do %>
+        <%= f.label :talk_description %>
+        <%= f.text_area :talk_description, rows: 8, class: 'form-control', placeholder: "What do you plan to cover and what the audience will learn?" %>
+      <% end %>
+
+      <%= f.field_wrapper :notes do %>
+        <%= f.label :notes %>
+        <%= f.text_area :notes, rows: 4, class: 'form-control', placeholder: "Anything else?" %>
+      <% end %>
+
+      <p>
+        <small>Beware that this proposal may be submitted to attendees so they can choose what they want to see.</small>
+      </p>
+
+      <%= f.button 'Submit your proposal', class: 'btn btn-default btn-lg center-block' %>
+    <%- end %>
   </div>
 </div>
